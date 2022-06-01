@@ -12,10 +12,10 @@ export const create = async () => {
 
   const errorMessage = 'FS operation failed';
 
-writeFile(filePath, fileContent, {flag: 'ax'})
-  .catch(() => {
-    throw new Error(errorMessage);
-  });
+  await writeFile(filePath, fileContent, {flag: 'ax'})
+    .catch(() => {
+      throw new Error(errorMessage);
+    });
 };
 
 create();
