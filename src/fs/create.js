@@ -13,7 +13,6 @@ export const create = async () => {
   const errorMessage = 'FS operation failed';
 
 writeFile(filePath, fileContent, {flag: 'ax'})
-  .then(() => console.log(`${fileName} was created successfully in ${folderName} folder!`))
   .catch(() => {
     throw new Error(errorMessage);
   });
