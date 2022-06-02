@@ -11,18 +11,10 @@ export const list = async () => {
 
   await access(folderPath)
     .then(async () => {
-    //   const dirents = await readdir(folderPath, { withFileTypes: true });
+      const dirents = await readdir(folderPath, { withFileTypes: true });
 
-    //   const files = dirents.filter((dirent) => dirent.isFile()).map((file) => file.name);
-    //   console.log(files);
-
-      const files = await readdir(folderPath, { withFileTypes: true });
-
-      files.forEach((file) => {
-        if (file.isFile()) {
-          console.log(file.name);
-        }
-      })
+      const files = dirents.filter((dirent) => dirent.isFile()).map((file) => file.name);
+      console.log(files);
     })
     .catch(() => {
       throw new Error(errorMessage);
