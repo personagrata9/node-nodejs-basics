@@ -13,7 +13,8 @@
     "read": "node src/fs/read",
     "env": "node src/cli/env",
     "args": "node src/cli/args",
-    "modules-test": "node src/modules/test.mjs"
+    "modules-test": "node src/modules/test.mjs",
+    "calc-hash": "node src/hash/calcHash"
   },
   "repository": {
     "type": "git",
