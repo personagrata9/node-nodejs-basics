@@ -1,10 +1,10 @@
 import * as path from 'path';
-import * as url from 'url';
+import { fileURLToPath } from 'url';
 import { checkDirentExist } from './check-dirent-exist.mjs';
-import {rename as renameFile} from 'fs/promises';
+import { rename as renameFile } from 'fs/promises';
 
 export const rename = async () => {
-  const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+  const __dirname = fileURLToPath(new URL('.', import.meta.url));
   const folderName = 'files';
   const wrongFileName = 'wrongFilename.txt';
   const properFileName = 'properFilename.md';

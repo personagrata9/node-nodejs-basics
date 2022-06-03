@@ -1,10 +1,10 @@
 import * as path from 'path';
-import * as url from 'url';
+import { fileURLToPath } from 'url';
 import { checkDirentExist } from './check-dirent-exist.mjs';
 import { writeFile } from 'fs/promises';
 
 export const create = async () => {
-  const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+  const __dirname = fileURLToPath(new URL('.', import.meta.url));
   const folderName = 'files';
   
   const fileName = 'fresh.txt';
