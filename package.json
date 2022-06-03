@@ -13,7 +13,7 @@
     "read": "node src/fs/read",
     "env": "node src/cli/env",
     "args": "node src/cli/args",
-    "modules": "node src/modules/cjsToEsm.mjs"
+    "modules-test": "node src/modules/test.mjs"
   },
   "repository": {
     "type": "git",
