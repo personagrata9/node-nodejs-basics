@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as url from 'url';
-import { readFile } from 'fs/promises';
+import { access, readFile } from 'fs/promises';
 
 export const read = async () => {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -10,11 +10,27 @@ export const read = async () => {
 
   const errorMessage = 'FS operation failed';
 
-  await readFile(fileToReadPath, { encoding: 'utf-8' })
-    .then((content) => console.log(content))
-    .catch(() => {
+  const checkIsFileExist = async (filePath) => {
+    try {
+      await access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  try {
+    const ifFileExist = await checkIsFileExist(fileToReadPath);
+
+    if (!ifFileExist) {
       throw new Error(errorMessage);
-    })
+    } else {
+      const content = await readFile(fileToReadPath, { encoding: 'utf-8' });
+      console.log(content);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 read();

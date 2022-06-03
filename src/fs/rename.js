@@ -11,23 +11,31 @@ export const rename = async () => {
   const oldPath = path.join(__dirname, folderName, wrongFileName);
   const newPath = path.join(__dirname, folderName, properFileName);
 
+  const successMessage = `File ${wrongFileName} was successfully renamed to ${properFileName}!`;
   const errorMessage = 'FS operation failed';
 
-  let wrongFileIsExist = false;
+  const checkIsFileExist = async (filePath) => {
+    try {
+      await fs.access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
-  await fs.access(newPath)
-    .then(() => {
-      wrongFileIsExist = true;
-    })
-    .catch(async () => {
+  try {
+    const isFileExist = await checkIsFileExist(oldPath);
+    const isFileRenamed = await checkIsFileExist(newPath);
+
+    if (!isFileExist || isFileRenamed) {
+      throw new Error(errorMessage);
+    } else {
       await fs.rename(oldPath, newPath)
-        .catch(() => {
-          throw new Error(errorMessage);
-        });
-    })
-    .finally(() => {
-      if (wrongFileIsExist) throw new Error(errorMessage);
-    })
+      console.log(successMessage);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 rename();

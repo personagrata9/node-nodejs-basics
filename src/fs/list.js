@@ -9,16 +9,29 @@ export const list = async () => {
 
   const errorMessage = 'FS operation failed';
 
-  await access(folderPath)
-    .then(async () => {
+  const checkIsFolderExist = async (folderPath) => {
+    try {
+      await access(folderPath);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  try {
+    const isFolderExist = await checkIsFolderExist(folderPath);
+
+    if (!isFolderExist) {
+      throw new Error(errorMessage);
+    } else {
       const dirents = await readdir(folderPath, { withFileTypes: true });
 
       const files = dirents.filter((dirent) => dirent.isFile()).map((file) => file.name);
       console.log(files);
-    })
-    .catch(() => {
-      throw new Error(errorMessage);
-    })
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 list();
