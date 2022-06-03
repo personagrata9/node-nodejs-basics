@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as url from 'url';
-import { access, readdir } from 'fs/promises';
+import { checkDirentExist } from './check-dirent-exist.mjs';
+import { readdir } from 'fs/promises';
 
 export const list = async () => {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -9,17 +10,8 @@ export const list = async () => {
 
   const errorMessage = 'FS operation failed';
 
-  const checkIsFolderExist = async (folderPath) => {
-    try {
-      await access(folderPath);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   try {
-    const isFolderExist = await checkIsFolderExist(folderPath);
+    const isFolderExist = await checkDirentExist(folderPath);
 
     if (!isFolderExist) {
       throw new Error(errorMessage);

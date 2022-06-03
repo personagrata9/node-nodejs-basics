@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as url from 'url';
-import { access, writeFile } from 'fs/promises';
+import { checkDirentExist } from './check-dirent-exist.mjs';
+import { writeFile } from 'fs/promises';
 
 export const create = async () => {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -13,18 +14,8 @@ export const create = async () => {
   const successMessage = `File ${fileName} was successfully created!`;
   const errorMessage = 'FS operation failed';
 
-
-  const checkIsFileExist = async (filePath) => {
-    try {
-      await access(filePath);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   try {
-    const isFileExist = await checkIsFileExist(filePath);
+    const isFileExist = await checkDirentExist(filePath);
     
     if (isFileExist) {
       throw new Error(errorMessage);

@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as url from 'url';
-import * as fs from 'fs/promises';
+import { checkDirentExist } from './check-dirent-exist.mjs';
+import {rename as renameFile} from 'fs/promises';
 
 export const rename = async () => {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -14,23 +15,14 @@ export const rename = async () => {
   const successMessage = `File ${wrongFileName} was successfully renamed to ${properFileName}!`;
   const errorMessage = 'FS operation failed';
 
-  const checkIsFileExist = async (filePath) => {
-    try {
-      await fs.access(filePath);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
   try {
-    const isFileExist = await checkIsFileExist(oldPath);
-    const isFileRenamed = await checkIsFileExist(newPath);
+    const isFileExist = await checkDirentExist(oldPath);
+    const isFileRenamed = await checkDirentExist(newPath);
 
     if (!isFileExist || isFileRenamed) {
       throw new Error(errorMessage);
     } else {
-      await fs.rename(oldPath, newPath)
+      await renameFile(oldPath, newPath)
       console.log(successMessage);
     }
   } catch (error) {

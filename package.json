@@ -4,7 +4,16 @@
   "description": "This repository is the part of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "node src/fs/create",
+    "copy": "node src/fs/copy",
+    "rename": "node src/fs/rename",
+    "delete": "node src/fs/delete",
+    "list": "node src/fs/list",
+    "read": "node src/fs/read",
+    "env": "node src/cli/env",
+    "args": "node src/cli/args",
+    "modules": "node src/modules/cjsToEsm.mjs"
   },
   "repository": {
     "type": "git",
@@ -20,9 +29,5 @@
   "bugs": {
     "url": "https://github.com/AlreadyBored/node-nodejs-basics/issues"
   },
-  "homepage": "https://github.com/AlreadyBored/node-nodejs-basics#readme",
-  "devDependencies": {
-    "@types/node": "^17.0.38",
-    "eslint": "^8.16.0"
-  }
+  "homepage": "https://github.com/AlreadyBored/node-nodejs-basics#readme"
 }
