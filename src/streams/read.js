@@ -21,7 +21,7 @@ export const read = async () => {
 
   readableStream.on('end', () => process.stdout.write(`${data}\n`));
 
-  readableStream.on('error', error => console.log('Error', error.message));
+  readableStream.on('error', (error) => console.log('Error', error.message));
 };
 
 read();

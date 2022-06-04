@@ -13,7 +13,7 @@ export const write = async () => {
   process.stdin.on('data', (chunk) => {
     const writableToFileStream = createWriteStream(fileToWritePath, { flags: 'a'});
     writableToFileStream.write(chunk.toString());
-    writableToFileStream.close();
+    writableToFileStream.end();
   })
 };
 
