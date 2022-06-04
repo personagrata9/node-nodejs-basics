@@ -17,7 +17,7 @@ export const compress = async () => {
   const destFilePath = path.join(__dirname, folderName, destFileName);
 
   const successMessage = `File ${srcFileName} was successfully compressed to ${destFileName}!`;
-  const errorMessage = `Compress operation failed: file ${srcFileName} doesn't exist!`
+  const errorMessage = `Compress operation failed: file ${srcFileName} doesn't exist!`;
 
   const pipe = promisify(pipeline);
 
@@ -26,19 +26,19 @@ export const compress = async () => {
     const source = createReadStream(input);
     const destination = createWriteStream(output);
     await pipe(source, gzip, destination);
-  }
+  };
 
   try {
     const isSrcFileExist = await checkDirentExist(srcFilePath);
 
     if (isSrcFileExist) {
       await doGzip(srcFilePath, destFilePath);
-      console.log(successMessage)
+      console.log(successMessage);
     } else {
       throw new Error(errorMessage);
     }
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
 };
 
