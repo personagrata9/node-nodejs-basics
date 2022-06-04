@@ -17,7 +17,8 @@
     "calc-hash": "node src/hash/calcHash",
     "streams-read": "node src/streams/read",
     "streams-write": "node src/streams/write",
-    "streams-transform": "node src/streams/transform"
+    "streams-transform": "node src/streams/transform",
+    "compress": "node src/zip/compress"
   },
   "repository": {
     "type": "git",
