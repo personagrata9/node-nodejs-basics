@@ -43,4 +43,4 @@ npm run wt
 
 Child Processes (src/cp)
 
-npm run cp
+npm run cp arg1 arg2
