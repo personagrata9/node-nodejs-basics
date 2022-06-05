@@ -1,6 +1,6 @@
 # Node.js basics
 
-## node version: v16.15.0
+**node version: v16.15.0**
 
 ## Testing:
 
@@ -20,11 +20,11 @@
 
 ### Modules(src/modules):
 
-npm run modules
+- npm run modules
 
 ### Hash (src/hash):
 
-npm run hash
+- npm run hash
 
 ### Streams (src/streams):
 
