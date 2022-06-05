@@ -13,6 +13,10 @@ export const spawnChildProcess = async (args) => {
   child.stdout.on('data', (data) => {
     process.stdout.write(`Received from child process:\n${data}\n`);
   });
+
+  child.on('exit', (code) => {
+    process.stdout.write(`Child process exited with code ${code}\n`);
+  })
 };
 
 const args = process.argv.slice(2);
